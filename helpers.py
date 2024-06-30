@@ -18,6 +18,7 @@ def check_if_round_ended(config, round_path):
         lines = f.read().splitlines()
         if "GAME: The round has ended." in lines:
             return True
+    return False
 
 def send_webhook(webhook, username=None, avatar_url=None, content=None, file=None, embeds=None):
     data = {}
