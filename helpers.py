@@ -12,6 +12,13 @@ def set_last_round(config, year, month, day, round):
         with open('/opt/KeepWatcher/config.ini', 'w') as configfile:
             config.write(configfile)
 
+def check_if_round_ended(config, round_path):
+    gamelog = f"{config['meta']['LogPath']}/{round_path}/game.log"
+    with open(gamelog) as f:
+        lines = f.read().splitlines()
+        if "GAME: The round has ended." in lines:
+            return True
+
 def send_webhook(webhook, username=None, avatar_url=None, content=None, file=None, embeds=None):
     data = {}
     if username:
