@@ -1,6 +1,7 @@
 import configparser
 import requests
 import json
+import os
 
 def set_last_round(config, year, month, day, round):
     config['meta']['LastRound'] = f"{year}/{month:02}/{day:02}/{round}"
