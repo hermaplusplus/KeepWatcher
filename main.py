@@ -50,6 +50,11 @@ if config['features']['Manifest'] == "yes":
         embed = {
             "title": f"Weekly Census",
             "description": formatted_manifest,
+            "author": {
+                "name": "hermaplusplus/KeepWatcher",
+                "icon_url": "https://files.herma.moe/misc/herma.png",
+                "url": "https://github.com/hermaplusplus/KeepWatcher"
+            },
             "footer": {
                 "text": f"{round_path}"
             }
