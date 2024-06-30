@@ -37,11 +37,15 @@ if config['features']['Manifest'] == "yes":
     with open(f"{config['meta']['LogPath']}/{round_path}/manifest.log") as f:
         manifest = f.read().splitlines()[2:]
     manifest = list(map(lambda x: x.split(" \\ "), manifest))
-    formatted_manifest = "\n".join([f"**{x[0]}** as **{x[1]}** the **{x[2]}**" for x in manifest])
+    formatted_manifest = "\n".join([f"**{x[1]}** the **{x[2]}** was played by **{x[0]}**" for x in manifest])
+    formatted_manifest = "\n".join(sorted(formatted_manifest.split("\n"), key=lambda x: x.split(" ")[1]))
     logging.info(f"Manifest processed, sending webhook")
     embed = {
-        "title": f"Manifest for {round_path}",
+        "title": f"Weekly Census",
         "description": formatted_manifest,
+        "footer": {
+            "text": f"{round_path}"
+        }
     }
     r = helpers.send_webhook(config['features.manifest']['WebhookAddress'], embeds=[embed])
     logging.info("Webhook sent")
