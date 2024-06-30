@@ -7,7 +7,10 @@ import sys
 import helpers
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+if os.path.exists('config.ini'):
+    config.read('config.ini')
+else:
+    config.read('/opt/KeepWatcher/config.ini')
 
 if config['meta']['DebugLoggingPath'] != "":
     logging.basicConfig(filename=config['meta']['DebugLoggingPath'], level=logging.INFO)

@@ -4,8 +4,12 @@ import json
 
 def set_last_round(config, year, month, day, round):
     config['meta']['LastRound'] = f"{year}/{month:02}/{day:02}/{round}"
-    with open('config.ini', 'w') as configfile:
-        config.write(configfile)
+    if os.path.exists('config.ini'):
+        with open('config.ini', 'w') as configfile:
+            config.write(configfile)
+    else:
+        with open('/opt/KeepWatcher/config.ini', 'w') as configfile:
+            config.write(configfile)
 
 def send_webhook(webhook, username=None, avatar_url=None, content=None, file=None, embeds=None):
     data = {}
