@@ -44,17 +44,17 @@ if config['features']['Manifest'] == "yes":
         with open(f"{config['meta']['LogPath']}/{round_path}/manifest.log") as f:
             manifest = f.read().splitlines()[2:]
         manifest = list(map(lambda x: x.split(" \\ "), manifest))
-        formatted_manifest = "\n".join([f"**{x[1]}** the **{x[2]}** was played by **{x[0]}**" for x in manifest])
+        formatted_manifest = "\n".join([f"**{x[1]}** as **{x[2]}**" for x in manifest])
         formatted_manifest = "\n".join(sorted(formatted_manifest.split("\n"), key=lambda x: x.split(" ")[1]))
         logging.info(f"Manifest processed, sending webhook")
         embed = {
             "title": f"Weekly Census",
             "description": formatted_manifest,
-            "author": {
-                "name": "hermaplusplus/KeepWatcher",
-                "icon_url": "https://files.herma.moe/misc/herma.png",
-                "url": "https://github.com/hermaplusplus/KeepWatcher"
-            },
+            #"author": {
+            #    "name": "hermaplusplus/KeepWatcher",
+            #    "icon_url": "https://files.herma.moe/misc/herma.png",
+            #    "url": "https://github.com/hermaplusplus/KeepWatcher"
+            #},
             "footer": {
                 "text": f"{round_path}"
             }
