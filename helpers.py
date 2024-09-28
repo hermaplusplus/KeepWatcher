@@ -16,7 +16,7 @@ def check_if_round_ended(config, round_path):
     gamelog = f"{config['meta']['LogPath']}/{round_path}/game.log"
     with open(gamelog) as f:
         lines = f.read().splitlines()
-        if "GAME: The round has ended." in lines:
+        if any([("GAME: The round has ended." in line) for line in lines]):
             return True
     return False
 
